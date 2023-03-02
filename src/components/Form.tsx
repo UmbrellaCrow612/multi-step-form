@@ -33,7 +33,7 @@ export default function Form({
         <div className="row-span-5">{children} </div>
         <div
           className={`flex items-center row-span-1 px-4 ${
-            previousPageUrl.length > 1 ? "justify-between" : "justify-end"
+            previousPageUrl.length >= 1 ? "justify-between" : "justify-end"
           }`}
         >
           {previousPageUrl === "" ? (
@@ -46,12 +46,16 @@ export default function Form({
               Go Back
             </button>
           )}
-          <button
-            className="px-4 py-2 rounded-md bg-[#03295A] text-white shadow-sm"
-            onClick={() => router.push(nextPageUrl)}
-          >
-            Next step
-          </button>
+          {nextPageUrl === "" ? (
+            <></>
+          ) : (
+            <button
+              className="px-4 py-2 rounded-md bg-[#03295A] text-white shadow-sm"
+              onClick={() => router.push(nextPageUrl)}
+            >
+              Next step
+            </button>
+          )}
         </div>
       </div>
     </div>
