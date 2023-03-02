@@ -1,7 +1,16 @@
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
-export default function Form({ children }: { children: ReactNode }) {
+export default function Form({
+  children,
+  nextPageUrl,
+  previousPageUrl,
+}: {
+  children: ReactNode;
+  nextPageUrl: string;
+  previousPageUrl: string;
+}) {
+  const router = useRouter();
   return (
     <div className="w-[50rem] h-[40rem] rounded-xl shadow-md bg-white p-4 grid grid-cols-6 grid-rows-1">
       {/* Left */}
@@ -20,7 +29,31 @@ export default function Form({ children }: { children: ReactNode }) {
         </Step>
       </div>
       {/* Right */}
-      <div className="col-span-4 border border-black">{children}</div>
+      <div className="grid col-span-4 grid-rows-6">
+        <div className="row-span-5">{children} </div>
+        <div
+          className={`flex items-center row-span-1 px-4 ${
+            previousPageUrl.length > 1 ? "justify-between" : "justify-end"
+          }`}
+        >
+          {previousPageUrl === "" ? (
+            <></>
+          ) : (
+            <button
+              className="px-4 py-2 text-gray-400 border border-gray-100 rounded-md shadow-sm"
+              onClick={() => router.push(previousPageUrl)}
+            >
+              Go Back
+            </button>
+          )}
+          <button
+            className="px-4 py-2 rounded-md bg-[#03295A] text-white shadow-sm"
+            onClick={() => router.push(nextPageUrl)}
+          >
+            Next step
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
@@ -40,7 +73,7 @@ const Step = ({
       {/*Number */}
       <div
         className={`px-3 py-1 text-white border border-white rounded-full ${
-          stepUrl === asPath ? "text-black bg-blue-400 border-blue-300" : ""
+          stepUrl === asPath ? "text-black bg-blue-200 border-blue-100" : ""
         }`}
       >
         {stepNumber}
