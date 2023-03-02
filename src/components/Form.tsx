@@ -12,7 +12,7 @@ export default function Form({
 }) {
   const router = useRouter();
   return (
-    <div className="w-[50rem] h-[40rem] rounded-xl shadow-md bg-white p-4 grid grid-cols-6 grid-rows-1">
+    <div className="w-[60rem] h-[40rem] rounded-xl shadow-md bg-white p-4 grid grid-cols-6 grid-rows-1">
       {/* Left */}
       <div className="col-span-2 bg-[url('/assets/images/bg-sidebar-desktop.svg')] bg-no-repeat bg-cover bg-center rounded-xl py-6 px-3 space-y-4">
         <Step stepNumber={1} stepUrl="/">
